@@ -21,3 +21,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Avatar popup
+document.addEventListener("DOMContentLoaded", () => {
+    const avatar = document.querySelector(".image.avatar img");
+    const body = document.body;
+  
+    // Create a modal container
+    const modal = document.createElement("div");
+    modal.style.position = "fixed";
+    modal.style.top = "0";
+    modal.style.left = "0";
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.background = "rgba(0, 0, 0, 0.7)";
+    modal.style.display = "none";
+    modal.style.justifyContent = "center";
+    modal.style.alignItems = "center";
+    modal.style.zIndex = "1000";
+  
+    // Create an enlarged image element
+    const enlargedImage = document.createElement("img");
+    enlargedImage.style.maxWidth = "300px"; // Limit width
+    enlargedImage.style.maxHeight = "300px"; // Limit height
+    enlargedImage.style.border = "5px solid white";
+    enlargedImage.style.borderRadius = "50%"; // Make the image circular
+    enlargedImage.style.objectFit = "cover"; // Ensure proper scaling inside the circle
+    modal.appendChild(enlargedImage);
+  
+    // Add modal to the body
+    body.appendChild(modal);
+  
+    // Click event to show modal
+    avatar.addEventListener("click", () => {
+      enlargedImage.src = avatar.src; // Use the same source as the avatar
+      modal.style.display = "flex";
+  
+      // Add a blur to everything except the modal
+      body.style.overflow = "hidden"; // Prevent scrolling
+      body.querySelector("#header").style.filter = "blur(5px)";
+    });
+  
+    // Click event to close modal
+    modal.addEventListener("click", () => {
+      modal.style.display = "none";
+  
+      // Remove blur and restore scroll
+      body.style.overflow = "auto";
+      body.querySelector("#header").style.filter = "none";
+    });
+  });
+  

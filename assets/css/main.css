@@ -3219,3 +3219,17 @@ input, select, textarea {
 			}
 
 	}
+
+body {
+	transition: filter 0.3s ease-in-out;
+	}
+	
+img {
+cursor: pointer;
+transition: transform 0.3s ease-in-out;
+}
+	
+img:hover {
+transform: scale(1.05); /* Subtle hover effect for the avatar */
+}
+	
